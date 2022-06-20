@@ -3,9 +3,8 @@
 import os
 import shutil
 
-source = 'C:\\Users\\WANGLINGFENG\\Desktop\\pythontest\\source'
-target = 'C:\\Users\\WANGLINGFENG\\Desktop\\pythontest\\target'
-
+source = 'C:\\PythonTest\\source'
+target = 'C:\\PythonTest\\target'
 
 # list = os.listdir(source)
 # for item in list:
@@ -15,11 +14,19 @@ target = 'C:\\Users\\WANGLINGFENG\\Desktop\\pythontest\\target'
 #     else:
 #         shutil.copy(from_path, from_path.replace(source, target))
 
+#
+# def lsdir(dir):
+#     contents = os.walk(dir)
+#     for path, folder, file in contents:
+#         # print('path:', path, '\nfolder:', folder, "\nfile:", file, "\n")
+#         for f in file:
+#             file_name = path + '/' + f
+#             print(file_name)
+#             target_name = str(file_name).replace(source, target)
+#             print('target', target_name)
+#             shutil.copyfile(file_name, target_name)
 
-def lsdir(dir):
-    contents = os.walk(dir)
-    for path, folder, file in contents:
-        print('path:', path, '\nfolder:', folder, "\nfile:", file, "\n")
 
+# lsdir(source)
 
-lsdir(source)
+shutil.copytree(source, target)
