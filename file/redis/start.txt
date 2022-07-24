@@ -1,0 +1,15 @@
+启动主redis:
+/usr/local/redis/redis-7.0.4/src/redis-server /etc/redis/redis_master.conf
+
+启动两从：
+/usr/local/redis/redis-7.0.4/src/redis-server /etc/redis/redis_slave_one.conf
+
+/usr/local/redis/redis-7.0.4/src/redis-server /etc/redis/redis_slave_two.conf
+
+启动主Redis的哨兵：
+/usr/local/redis/redis-7.0.4/src/redis-sentinel /etc/redis/redis_master_sentinel.conf  也可  /user/local/redis/redis-7.0.4/src/redis-server /etc/redis/redis_master_sentinel.conf --sentinel
+
+启动两从Redis的哨兵：
+/usr/local/redis/redis-7.0.4/src/redis-sentinel /etc/redis/redis_slave_one_sentinel.conf
+
+/usr/local/redis/redis-7.0.4/src/redis-sentinel /etc/redis/redis_slave_two_sentinel.conf
