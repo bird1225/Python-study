@@ -49,21 +49,21 @@ headers = {
 # post表单网址
 url = "http://ykhd.ldjy.fit/addons/vote/index/vote"
 body = {'player_id': '145372'}
-
-for i in range(0, 100):
-    proxy = getProxy()
-    print(proxy)
-    with open('D:\Desktop\Python\ChinaIP.txt','a') as file:
-        file.write(proxy)
-        file.write('\n')
-    for i in range(0, 4):
-        print(i + 1)
-        r = requests.post(url=url, data=body, headers=headers, proxies={'http': proxy})
-        print(r)
-        print(r.text)
-        time.sleep(5)
-    time.sleep(10)
-
+try:
+    for i in range(0, 200):
+        proxy = getProxy()
+        print(proxy)
+        with open('D:\Desktop\Python\ChinaIP.txt','a') as file:
+            file.write(proxy)
+            file.write('\n')
+        for i in range(0, 3):
+            print(i + 1)
+            r = requests.post(url=url, data=body, headers=headers, proxies={'http': proxy})
+            print(r)
+            print(r.text)
+        time.sleep(1)
+except:
+    print('error')
 
 # with open('D:\Desktop\Python\ChinaIP.txt', 'r') as file:
 #     proxyList = file.read()
