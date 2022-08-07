@@ -1,3 +1,4 @@
+# coding: utf-8
 # @Author  : 汪凌峰（Eric Wang）
 # @Date    : 2022/7/31
 import urllib
@@ -49,11 +50,11 @@ headers = {
 # post表单网址
 url = "http://ykhd.ldjy.fit/addons/vote/index/vote"
 body = {'player_id': '145372'}
-try:
-    for i in range(0, 200):
+for i in range(0, 50):
+    try:
         proxy = getProxy()
         print(proxy)
-        with open('D:\Desktop\Python\ChinaIP.txt','a') as file:
+        with open('D:\Desktop\Python\ChinaIP.txt', 'a') as file:
             file.write(proxy)
             file.write('\n')
         for i in range(0, 3):
@@ -61,9 +62,10 @@ try:
             r = requests.post(url=url, data=body, headers=headers, proxies={'http': proxy})
             print(r)
             print(r.text)
-        time.sleep(1)
-except:
-    print('error')
+        # time.sleep(1)
+    except:
+        print('error')
+        continue
 
 # with open('D:\Desktop\Python\ChinaIP.txt', 'r') as file:
 #     proxyList = file.read()
