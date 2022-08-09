@@ -1,10 +1,11 @@
 # @Author  : 汪凌峰（Eric Wang）
 # @Date    : 2022/8/8
+import random
 
 import psycopg2
 
 host = 'localhost'
-port = '5432'
+port = '5433'
 user = 'postgres'
 password = '123456'
 database = 'test'
@@ -38,8 +39,12 @@ create_table_sql = 'CREATE TABLE {} (' \
 print('create_table_sql:', create_table_sql)
 # cursor.execute(create_table_sql)
 # 插入数据
-insert_sql = "INSERT INTO {} (id, name,age) VALUES(2,'tom',18);".format(table_name)
-cursor.execute(insert_sql)
+insert_sql = "INSERT INTO {} (id, name,age) VALUES(1,'tom',18);".format(table_name)
+# cursor.execute(insert_sql)
 # 查询数据
+select_sql = 'SELECT * FROM {}'.format(table_name)
+cursor.execute(select_sql)
+users = cursor.fetchall()
+print('users:{}'.format(users))
 # 关闭数据库连接
 conn.close()
