@@ -7,7 +7,7 @@ user = 'ts08@lleewell.com'
 password = 'Leewell123'
 
 
-def sendMail(message, Subject, sender_show,  to_addrs, cc_show=''):
+def sendMail(message, Subject, sender_show, recipient_show, to_addrs, cc_show=''):
     '''
     :param message: str 邮件内容
     :param Subject: str 邮件主题描述
@@ -38,9 +38,9 @@ if __name__ == "__main__":
     message = 'Python 测试邮件...'
     Subject = '主题测试'
     # 显示发送人
-    sender_show = 'xxx'
+    sender_show = '报警发件人'
     # 显示收件人
-    recipient_show = 'xxx'
+    recipient_show = '报警收件人1，报警收件人2'
     # 实际发给的收件人
-    to_addrs = '540914848@qq.com'
+    to_addrs = '540914848@qq.com,ts08@lleewell.com'
     sendMail(message, Subject, sender_show, recipient_show, to_addrs)
