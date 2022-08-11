@@ -7,6 +7,7 @@ import urllib.request, urllib.error  # 制定URL，获取网页数据
 import xlwt  # 进行excel操作
 import sqlite3  # 进行SQLite数据库操作
 import psycopg2  # 进行PostgreSQL数据库操作
+from postgreSQL import connector
 
 baseurl = 'http://movie.douban.com/top250?start='
 
@@ -15,7 +16,7 @@ def main():
     savePath = './'
     # 1.爬取网页
     datalist = getData(baseurl)
-    # saveData(savePath, datalist)
+    saveData(savePath, datalist)
 
 
 # 请求url
@@ -102,7 +103,14 @@ def getData(url):
 
 
 def saveData(savePath, data):
-    print('savePath:{}'.format(savePath))
+    # print('savePath:{}'.format(savePath))
+    # with open(savePath + 'movie.xlsx', 'a') as m:
+    #     workbook = xlwt.Workbook(encoding='utf-8')
+    #     worksheet = workbook.add_sheet('movie')
+    #     worksheet.write()
+    for item in data:
+        sql = 'insert into movie varlud({},{},{},{},{},{},{})'.format(item[0],item[1],item[2],item[3],item[4],item[5],item[6])
+        connector.insert()
 
 
 def test_bs4():
