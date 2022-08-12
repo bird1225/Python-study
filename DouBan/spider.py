@@ -71,10 +71,12 @@ def getData(url):
             # 一部电影的所有信息
             data = []
             item = str(item)
-            link = re.findall(findLink, item)[0]
-            data.append(link)
-            imgSrc = re.findall(findImgSrc, item)[0]
-            data.append(imgSrc)
+            link = re.findall(findLink, item)
+            if len(link) > 0:
+                data.append(link[0])
+            imgSrc = re.findall(findImgSrc, item)
+            if len(imgSrc) > 0:
+                data.append(imgSrc[0])
             titles = re.findall(findTitle, item)
             if (len(titles) == 2):
                 ctitle = titles[0]
@@ -84,20 +86,23 @@ def getData(url):
             else:
                 data.append(titles[0])
                 data.append(' ')
-            rating = re.findall(findRating, item)[0]
-            data.append(rating)
-            judge = re.findall(findJudge, item)[0]
-            data.append(judge)
-            inq = re.findall(findInq, item)[0]
+            rating = re.findall(findRating, item)
+            if len(rating) > 0:
+                data.append(rating[0])
+            judge = re.findall(findJudge, item)
+            if len(judge) > 0:
+                data.append(judge[0])
+            inq = re.findall(findInq, item)
             if len(inq) != 0:
-                inq = inq.replace('。', "")
+                inq = inq[0].replace('。', "")
                 data.append(inq)
             else:
                 data.append(' ')
             bd = re.findall(findBd, item)[0]
-            bd = re.sub('<br(\s+)?/>(\s+)?', '', bd)
-            bd = re.sub('/', ' ', bd)
-            data.append(bd.strip())
+            if len(bd) > 0:
+                bd = re.sub('<br(\s+)?/>(\s+)?', '', bd[0])
+                bd = re.sub('/', ' ', bd)
+                data.append(bd.strip())
             dataList.append(data)
     return dataList
 
@@ -109,8 +114,9 @@ def saveData(savePath, data):
     #     worksheet = workbook.add_sheet('movie')
     #     worksheet.write()
     for item in data:
-        sql = 'insert into movie varlud({},{},{},{},{},{},{})'.format(item[0],item[1],item[2],item[3],item[4],item[5],item[6])
-        connector.insert()
+        sql = "insert into movie (link,img,title,rating,judge,inq,bd) values (%s,%s,%s,%s,%s,%s,%s);"
+        params = (item[0], item[1], item[2], item[3], item[4], item[5], item[6])
+        connector.insert(sql, params)
 
 
 def test_bs4():

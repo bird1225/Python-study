@@ -53,14 +53,15 @@ def test():
     conn.close()
 
 
-def insert(sql):
+def insert(sql, params):
+    print(sql)
     # 获得连接
     conn = psycopg2.connect(host=host, port=port, user=user, password=password, database=database)
     # 设置自动提交
     conn.autocommit = True
     # 获得游标对象
     cursor = conn.cursor()
-    cursor.execute(sql)
+    cursor.execute(sql, params)
     conn.close()
 
 
