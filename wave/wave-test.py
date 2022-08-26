@@ -24,7 +24,7 @@ z2 = z1 + 4 / (3 * np.pi) * np.sin(3 * x)  # 第二个波
 y3 = np.linspace(3, 3, 100)
 z3 = z2 + 4 / (5 * np.pi) * np.sin(5 * x)  # 第三个波
 
-fig = plt.figure()
+fig = plt.figure( figsize=(20,10) )
 ax = fig.gca(projection='3d')
 ax.plot(x, y, z, label='z=1 (0<x<pi) \nz=0 (pi<x<2*pi)')
 ax.plot(x, y1, z1, label='z=4/np.pi*np.sin(x)')
