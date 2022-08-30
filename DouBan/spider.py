@@ -7,7 +7,7 @@ import urllib.request, urllib.error  # 制定URL，获取网页数据
 import xlwt  # 进行excel操作
 import sqlite3  # 进行SQLite数据库操作
 import psycopg2  # 进行PostgreSQL数据库操作
-from postgreSQL import connector
+from PostgreSQL import connector
 
 baseurl = 'http://movie.douban.com/top250?start='
 

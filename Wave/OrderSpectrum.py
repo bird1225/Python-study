@@ -60,7 +60,7 @@ def Orderspectrum(x, Fs, rpm):
 ## Case 1
 #
 # import array
-# import wave
+# import Wave
 # import math
 #
 # def sinesweep(f0, f1, sweeptime, samplingrate, peak):

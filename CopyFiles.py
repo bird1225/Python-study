@@ -17,9 +17,9 @@ target = 'C:\\PythonTest\\target'
 #
 # def lsdir(dir):
 #     contents = os.walk(dir)
-#     for path, folder, file in contents:
-#         # print('path:', path, '\nfolder:', folder, "\nfile:", file, "\n")
-#         for f in file:
+#     for path, folder, File in contents:
+#         # print('path:', path, '\nfolder:', folder, "\nFile:", File, "\n")
+#         for f in File:
 #             file_name = path + '/' + f
 #             print(file_name)
 #             target_name = str(file_name).replace(source, target)
